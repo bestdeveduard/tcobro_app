@@ -1,0 +1,109 @@
+<ion-header>
+  <ion-toolbar>
+    <app-common-header></app-common-header>
+
+    <div align="center" class="header_div">
+      <ion-item class="header_item" lines="none">
+        <img src="assets/images/icon_001.png" alt="" slot="start" (click)="gotoMenu()">
+        <ion-label>{{'rendimiento' | translate}}</ion-label>
+        <img src="" alt="" slot="end" (click)="refresh()">
+      </ion-item>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="body_div">
+    <ion-row>
+      <ion-col size="6">
+        <ion-item lines="none" class="ion-no-padding start_date" (click)="selectDateFunc('start_date')">
+          <ion-icon name="calendar-outline" slot="start"></ion-icon>
+          <ion-text>{{start_date1}}</ion-text>
+        </ion-item>
+      </ion-col>
+      <ion-col size="6">
+        <ion-item lines="none" class="ion-no-padding end_date" (click)="selectDateFunc('end_date')">
+          <ion-icon name="calendar-outline" slot="start"></ion-icon>
+          <ion-text>{{end_date1}}</ion-text>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <div align="center">
+    <ion-button class="search_btn" (click)="calcChart()" [disabled]="start_date == 'Start Date' || end_date == 'End Date'">{{'search' | translate}}</ion-button>
+  </div>
+  <div>
+    <h3>{{'collect' | translate}}</h3>
+    <br>
+    <ion-row>
+      <ion-col size="6" class="ion-align-item-center ion-align-self-center" align="center">
+        <p>{{'capital' | translate}}</p>
+        <div class='chart-container'>
+          <canvas #capitalchart id="capitalchart"></canvas>
+        </div>
+        <h5>{{capitalchartData[0] | currency}}</h5>
+      </ion-col>
+      <ion-col size="6" class="ion-align-item-center ion-align-self-center" align="center">
+        <p>{{'interest' | translate}}</p>
+        <div class='chart-container'>
+          <canvas #intereschart id="intereschart"></canvas>
+        </div>
+        <h5>{{intereschartData[0] | currency}}</h5>
+      </ion-col>
+    </ion-row>
+    <br>
+    <br>
+    <ion-row>
+      <ion-col size="6" class="ion-align-item-center ion-align-self-center" align="center">
+        <p>{{'more' | translate}}</p>
+        <div class='chart-container'>
+          <canvas #morachart id="morachart"></canvas>
+        </div>
+        <h5>{{morachartData[0] | currency}}</h5>
+      </ion-col>
+      <ion-col size="6" class="ion-align-item-center ion-align-self-center" align="center">
+        <p>{{'total_collect' | translate}}</p>
+        <div class='chart-container'>
+          <canvas #totalchart id="totalchart"></canvas>
+        </div>
+        <h5>{{totalchartData[0] | currency}}</h5>
+      </ion-col>
+    </ion-row>
+    <br>
+    <br>
+    <ion-row>
+      <ion-col size="3"></ion-col>
+      <ion-col size="6" class="ion-align-item-center ion-align-self-center" align="center">
+        <p>{{'utility' | translate}}</p>
+        <div class='chart-container'>
+          <canvas #percentchart id="percentchart"></canvas>
+        </div>
+        <h5>{{percentchartData[0] | currency}}</h5>
+      </ion-col>
+      <ion-col size="3"></ion-col>
+      
+    </ion-row>
+  </div>
+<br>
+  <div>
+    <h3>{{'borrowed' | translate}}</h3>
+    <br>
+    <ion-row>
+      <ion-col size="6" class="ion-align-item-center ion-align-self-center" align="center">
+        <p>{{'no_loans' | translate}}</p>
+        <div class='chart-container'>
+          <canvas #prestamosChart id="prestamosChart"></canvas>
+        </div>
+        <h5>{{prestamoschartData[0]}}</h5>
+      </ion-col>
+      <ion-col size="6" class="ion-align-item-center ion-align-self-center" align="center">
+        <p>{{'borrowed' | translate}}</p>
+        <div class='chart-container'>
+          <canvas #prestCapitalChart id="prestCapitalChart"></canvas>
+        </div>
+        <h5>{{prestCapitalData[0] | currency}}</h5>
+      </ion-col>
+    </ion-row>    
+  </div>
+</ion-content>

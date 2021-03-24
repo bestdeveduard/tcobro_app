@@ -1,0 +1,42 @@
+<!-- <ion-header class="header_bg bg-transparent">
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-button style="--color: white; font-size: 15px; margin-left: 9px;" (click)="close()">{{'close' | translate}}</ion-button>
+		</ion-buttons>
+		<ion-title style="color: white; padding: 0 !important;">{{'printer_list' | translate}}</ion-title>
+		<ion-buttons slot="end">
+			<ion-button style="--color: white; font-size: 15px; margin-right: 9px;" (click)="save()">{{'save' | translate}}</ion-button>
+		</ion-buttons>
+	</ion-toolbar>
+</ion-header> -->
+
+<ion-header>
+	<ion-toolbar>
+		<app-common-header></app-common-header>
+
+		<div align="center" class="header_div">
+			<ion-item class="header_item" lines="none">
+				<img src="assets/images/icon_001.png" alt="" slot="start" (click)="close()">
+				<ion-label>{{'printer_list' | translate}}</ion-label>
+				<ion-icon name="save-outline" slot="end" style="color: white;" (click)="save()"></ion-icon>
+			</ion-item>
+		</div>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen class="ion-padding">
+	<ion-list>
+		<ion-radio-group [(ngModel)]="b_device" (ionChange)="changeDevice($event)">
+			<ion-list-header>
+				<ion-label>{{'bluetooth_devices' | translate}}</ion-label>
+			</ion-list-header>
+	
+			<div *ngFor="let sds of printList; let i = index;" style="padding: 10px 0;">
+				<ion-item *ngIf="i % 3 == 0">
+					<ion-label>{{sds}}</ion-label>
+					<ion-radio slot="start" value="{{sds}}/{{printList[i + 1]}}"></ion-radio>
+				</ion-item>
+			</div>
+		</ion-radio-group>
+	</ion-list>	
+</ion-content>

@@ -1,0 +1,132 @@
+<ion-header>
+  <ion-toolbar>
+    <app-common-header></app-common-header>
+
+    <div align="center" class="header_div">
+			<ion-item class="header_item" lines="none">
+				<img src="assets/images/icon_001.png" alt="" slot="start" (click)="gotoCustomerReport()">
+        <ion-label *ngIf="type == 'edit'">{{'edit_customer' | translate}}</ion-label>
+        <ion-label *ngIf="type == 'new'">{{'add_customer' | translate}}</ion-label>
+        <img src="" alt="" slot="end">
+			</ion-item>
+		</div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="form" (ngSubmit)="submit(form.value)">
+  <div class="presta_div">
+    <ion-row>
+      <ion-col size="12">
+        <ion-item lines="none" class="ion-no-padding prest_pro">
+          <ion-label position="floating" class="ion-no-margin">{{'full_name' | translate}} <span style="color: red;">*</span></ion-label>
+          <ion-input type="text" formControlName="first_name" placeholder=""></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="6">
+        <ion-item lines="none" class="ion-no-padding prest_pro">
+          <ion-label position="floating" class="ion-no-margin">{{'id_passport' | translate}}</ion-label>
+          <ion-input type="text" formControlName="unique_number" placeholder="345687"></ion-input>          
+        </ion-item>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-item lines="none" class="ion-no-padding prest_pro">
+          <ion-label position="floating" class="ion-no-margin">{{'country' | translate}}</ion-label>
+          <ion-select mode="ios" formControlName="country_id" interface="alert" placeholder="Seleccione">
+            <ion-select-option *ngFor="let ctr of countries" value="{{ctr.id}}">{{ctr.name}}</ion-select-option>            
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12">
+        <ion-item lines="none" class="ion-no-padding prest_pro">
+          <ion-label position="floating" class="ion-no-margin">{{'direction' | translate}} <span style="color: red;">*</span></ion-label>
+          <ion-input type="text" formControlName="address" placeholder="111 Everett Av chelsea MA 02150"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="6">
+        <ion-item lines="none" class="ion-no-padding prest_pro">
+          <ion-label position="floating" class="ion-no-margin">{{'mobile' | translate}} <span style="color: red;">*</span></ion-label>
+          <ion-input type="tel" formControlName="mobile" placeholder="(999) 999-9999"></ion-input>
+        </ion-item>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-item lines="none" class="ion-no-padding prest_pro">
+          <ion-label position="floating" class="ion-no-margin">{{'other_mobile' | translate}}</ion-label>
+          <ion-input type="tel" formControlName="phone" placeholder="(999) 999-9999"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="6">
+        <ion-item lines="none" class="ion-no-padding prest_pro">
+          <ion-label position="floating" class="ion-no-margin">{{'email' | translate}}</ion-label>
+          <ion-input type="email" [readonly]="type == 'edit'" formControlName="email" placeholder="example@hotmail.com"></ion-input>
+        </ion-item>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-item lines="none" class="ion-no-padding prest_pro">
+          <ion-label position="floating" class="ion-no-margin">{{'occupation' | translate}}</ion-label>
+          <ion-select mode="ios" formControlName="working_status" interface="alert" placeholder="Seleccione">
+            <ion-select-option value="Employee">{{'Employee' | translate}}</ion-select-option>
+            <ion-select-option value="Owner">{{'Owner' | translate}}</ion-select-option>
+            <ion-select-option value="Student">{{'Student' | translate}}</ion-select-option>
+            <ion-select-option value="Pensioner">{{'Pensioner' | translate}}</ion-select-option>
+            <ion-select-option value="Unemployed">{{'Unemployed' | translate}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="6">
+        <ion-item lines="none" class="ion-no-padding prest_pro">
+          <ion-label position="floating" class="ion-no-margin">{{'company' | translate}}</ion-label>
+          <ion-input type="text" formControlName="business_name" placeholder="Alexandra Guzman SA"></ion-input>
+        </ion-item>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-item lines="none" class="ion-no-padding prest_pro">
+          <ion-label position="floating" class="ion-no-margin">{{'working_time' | translate}}</ion-label>
+          <ion-input type="text" formControlName="working_time" placeholder=""></ion-input>          
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12">
+        <ion-item lines="none" class="ion-no-padding prest_pro">
+          <ion-label position="floating" class="ion-no-margin">{{'recommended' | translate}}</ion-label>
+          <ion-input type="text" formControlName="referencia_1" placeholder="Gabriel Guzman"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12">
+        <ion-item lines="none" class="ion-no-padding prest_pro">
+          <ion-label position="floating" class="ion-no-margin">{{'notas' | translate}}</ion-label>
+          <ion-textarea type="text" formControlName="notes" placeholder="Comentarios"></ion-textarea>
+        </ion-item>
+      </ion-col>
+    </ion-row>    
+  </div>
+  <br>
+  <div align="center">
+    <ion-button class="guardar" type="submit" [disabled]="!form.valid">{{'save' | translate}}</ion-button>
+  </div>
+</form>
+</ion-content>

@@ -1,0 +1,83 @@
+<ion-header>
+  <ion-toolbar>
+		<app-common-header></app-common-header>
+		
+		<div align="center" class="header_div">
+			<ion-item class="header_item" lines="none">
+				<img src="assets/images/icon_001.png" alt="" slot="start" (click)="navCtrl.back()">
+        <ion-label>{{'settings' | translate}}</ion-label>
+        <img src="" alt="" slot="end">
+			</ion-item>
+		</div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding-top ion-padding-bottom">
+  <div class="presta_div">
+    <ion-list>
+      <ion-item lines="none" class="ion-no-padding prest_pro">
+				<ion-label>{{'show_receipt_when_pay' | translate}}</ion-label>
+				<div class="toogle_div">
+					<p *ngIf="cobrar" class="turn_on">Si</p>
+					<ion-toggle [(ngModel)]="cobrar" (ionChange)="setActiveData('cobrar')" slot="end"></ion-toggle>
+					<p *ngIf="!cobrar" class="turn_off">No</p>
+				</div>
+      </ion-item>
+
+      <ion-item lines="none" class="ion-no-padding prest_pro">
+				<ion-label>{{'pay_only_interest_or_principal' | translate}}</ion-label>
+				<div class="toogle_div">
+					<p *ngIf="pago" class="turn_on">Si</p>
+					<ion-toggle [(ngModel)]="pago" (ionChange)="setActiveData('pago')" slot="end"></ion-toggle>
+					<p *ngIf="!pago" class="turn_off">No</p>
+				</div>				
+      </ion-item>
+
+      <ion-item lines="none" class="ion-no-padding prest_pro">
+				<ion-label>{{'show_capital_on_receipt' | translate}}</ion-label>
+				<div class="toogle_div">
+					<p *ngIf="capital" class="turn_on">Si</p>
+					<ion-toggle [(ngModel)]="capital" (ionChange)="setActiveData('capital')" slot="end"></ion-toggle>
+					<p *ngIf="!capital" class="turn_off">No</p>
+				</div>				
+      </ion-item>
+
+      <ion-item lines="none" class="ion-no-padding prest_pro">
+				<ion-label>{{'show_interest_on_receipt' | translate}}</ion-label>
+				<div class="toogle_div">
+					<p *ngIf="interest" class="turn_on">Si</p>
+					<ion-toggle [(ngModel)]="interest" (ionChange)="setActiveData('interest')" slot="end"></ion-toggle>
+					<p *ngIf="!interest" class="turn_off">No</p>
+				</div>				
+			</ion-item>
+			
+			<ion-item lines="none" class="ion-no-padding prest_pro">
+				<ion-label>{{'show_charges_on_receipt' | translate}}</ion-label>
+				<div class="toogle_div">
+					<p *ngIf="cargos" class="turn_on">Si</p>
+					<ion-toggle [(ngModel)]="cargos" (ionChange)="setActiveData('cargos')" slot="end"></ion-toggle>
+					<p *ngIf="!cargos" class="turn_off">No</p>
+				</div>				
+      </ion-item>
+
+      <ion-item lines="none" class="ion-no-padding prest_pro">
+				<ion-label>{{'show_penalty_on_receipt' | translate}}</ion-label>
+				<div class="toogle_div">
+					<p *ngIf="penalidad" class="turn_on">Si</p>
+					<ion-toggle [(ngModel)]="penalidad" (ionChange)="setActiveData('penalidad')" slot="end"></ion-toggle>
+					<p *ngIf="!penalidad" class="turn_off">No</p>
+				</div>
+      </ion-item>  
+
+      <ion-item lines="none" class="ion-no-padding prest_pro">
+				<ion-label>{{'show_todays_loans' | translate}}</ion-label>
+				<div class="toogle_div">
+					<p *ngIf="ruta" class="turn_on">Si</p>
+					<ion-toggle [(ngModel)]="ruta" (ionChange)="setActiveData('ruta')" slot="end"></ion-toggle>
+					<p *ngIf="!ruta" class="turn_off">No</p>
+				</div>
+      </ion-item> 
+
+    </ion-list>
+  </div>
+</ion-content>

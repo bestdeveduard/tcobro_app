@@ -1,0 +1,51 @@
+<ion-header class="bg-transparent">
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button text="" icon="chevron-back-outline"></ion-back-button>
+		</ion-buttons>
+		<ion-title>
+			{{'sign_up' | translate}}
+		</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content class="bg_color" fullscreen>	
+
+	<form [formGroup]="signupForm">
+		<div class="form">
+			<ion-list lines="none">
+				<ion-item lines="none">					
+					<ion-input type="text" placeholder="{{'first_name' | translate}}" formControlName="first_name" required></ion-input>
+				</ion-item>
+
+				<ion-item lines="none">					
+					<ion-input type="text" placeholder="{{'last_name' | translate}}" formControlName="last_name"></ion-input>
+				</ion-item>
+
+				<ion-item lines="none">					
+					<ion-input type="text" placeholder="{{'username' | translate}}" formControlName="username" required></ion-input>
+				</ion-item>
+
+				<ion-item lines="none">					
+					<ion-input type="email" placeholder="{{'email_address' | translate}}" formControlName="email" required></ion-input>
+				</ion-item>			
+
+				<ion-item lines="none">					
+					<ion-input type="password" placeholder="{{'create_password' | translate}}" formControlName="password" required></ion-input>
+				</ion-item>
+
+				<ion-item lines="none">
+					<!-- <div class="icon_box" slot="start">
+						<img src="assets/imgs/ic_password.png">
+					</div> -->
+					<ion-input type="password" placeholder="{{'confirm_password' | translate}}" formControlName="r_password" required>
+					</ion-input>
+				</ion-item>
+			</ion-list>
+		</div>
+	</form>
+</ion-content>
+
+<ion-footer class="ion-no-border">
+	<ion-button size="large" shape="block" class="btn" [disabled]="!signupForm.valid" (click)="signup(signupForm.value)">{{'sign_up' | translate}}</ion-button>
+</ion-footer>

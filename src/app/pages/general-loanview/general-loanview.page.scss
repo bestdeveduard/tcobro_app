@@ -1,0 +1,93 @@
+super-tab-button {
+  width: 33%;
+
+  ion-label {
+    font-size: 15px !important;
+  }
+}
+
+:host {
+  --super-tabs-toolbar-background: #ffffff;
+  --st-indicator-color: var(--main_color_1) !important;
+  --st-scrollable-toolbar-padding-left: 5px;
+  --st-label-color-active: var(--main_color_1);
+  --st-label-color-inactive: #adaaaa;
+  --st-label-text-transform: capitalize;
+  --st-label-font-size: 16px;
+  --st-icon-color-active: rgba(0, 0, 0, 0.1);
+
+  ::after {
+    display: none;
+  }
+}
+
+super-tabs,
+super-tabs-toolbar,
+super-tabs-container,
+ion-list {
+  background: var(--bg-color);
+}
+
+super-tab ion-content {
+  --background: var(--bg-color);
+}
+
+.presta_div {
+  ion-row {
+    padding: 10px 0px 10px 0px;
+    background: white;
+    box-shadow: 0 5px 5px -4px rgba(0, 0, 0, 0.5);
+    margin: 1px 10px 5px 10px;
+    border-radius: 8px;
+  }
+}
+
+.presta_div.general_sec {
+  ion-row {
+    padding: 16px 0px 16px 0px;
+    box-shadow: none;
+    margin-top: 0;
+    margin-bottom: 0;
+    border-radius: 0px;
+
+    h4 {
+      margin-top: 13px;
+      font-size: 13px;
+      font-weight: bold;      
+   
+    }
+  }
+}
+
+.prest_pro {
+  --background: transparent;
+
+  .avar_img {
+    width: 20%;
+    border-radius: 20px;
+    margin-right: 10px;
+  }
+  .avar_img.cobra {
+    width: 32px;
+  }
+
+  h4 {
+    font-size: 15px;
+    font-weight: bold;
+color: var(--main_color_2);   
+    margin-top: 5px;
+
+  }
+
+  p {
+    font-size: 12px;
+    font-weight: bold;
+
+
+  }
+
+  h5 {
+    font-size: 11px;
+    margin-top: 3px;
+  }
+}

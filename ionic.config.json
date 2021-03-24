@@ -1,0 +1,7 @@
+{
+  "name": "opus_banking",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

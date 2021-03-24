@@ -1,0 +1,117 @@
+.chart-container {
+  width: 100%;
+}
+
+#capitalchart,
+#intereschart,
+#morachart,
+#prestamosChart,
+#prestCapitalChart,
+#totalchart {
+  display: block;
+  min-height: 55px !important;
+  height: 65px !important;
+  // width: 100% !important;
+}
+
+#percentchart {
+  display: block;
+  min-height: 55px !important;
+  height: 65px !important;
+}
+
+li {
+  height: 25px;
+
+  &::marker {
+    font-size: 32px;
+  }
+
+  p {
+    margin: 0;
+    position: relative;
+    // bottom: 5px;
+    font-size: 14px;
+    font-weight: bold;   
+    color: var(--main_color_2);    
+  }
+}
+
+h4 {
+  font-size: 15px;
+  color: var(--main_color_9);
+}
+
+h3 {
+  color: var(--main_color_4);
+}
+
+p {
+  margin: 0;
+  color: var(--main_color_1);
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+h5 {
+  font-size: 15px;
+  margin: 0;
+  margin-top: 3px;
+     font-weight: bold;   
+    color: var(--main_color_2);
+
+}
+
+.body_div ion-item {
+  padding: 3px 5px 3px 16px;
+  --background: transparent;
+  --min-height: 25px;
+  border: 1px solid;
+  border-radius: 7px;
+
+  &.start_date {
+    border-color: var(--main_color_9);
+  }
+
+  &.end_date {
+    border-color: var(--main_color_8);
+  }
+
+  ion-datetime {
+    padding: 2px 0;
+    font-size: 16px;
+  }
+
+  ion-text {
+    font-size: 15px;
+  }
+
+  ion-icon {
+    font-size: 18px;
+    margin-right: 10px;
+  }
+}
+
+.prestado {
+  ul {
+    li {
+      color: var(--main_color_1);
+
+      p {
+        color: var(--main_color_1);
+        font-weight: bold;
+      }
+
+      span {
+        color: var(--main_color_9);
+      }
+    }
+  }
+}
+
+.search_btn {
+  --background: var(--main_color_7);//var(--main_color_4);
+  width: 50%;
+  height: 36px;
+  margin-top: 10px;
+}

@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <app-common-header></app-common-header>
+
+    <div align="center" class="header_div">
+			<ion-item class="header_item" lines="none">
+				<img src="assets/images/icon_001.png" alt="" slot="start" (click)="navCtrl.back()">
+        <ion-label>{{'reports' | translate}}</ion-label>
+        <img src="" alt="" slot="end">
+			</ion-item>
+		</div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding-top ion-padding-bottom">
+  <div class="presta_div">
+    <ion-list>
+      <ion-item lines="none" *ngIf="comService.userRole == 'Administrador' || access_rendimiento" class="ion-no-padding prest_pro" (click)="selectReport('en')">
+        <img src="assets/images/icon_019.png" alt="" slot="start" class="avar_img">
+        <div>
+          <!-- <p>Nombre del reporte</p> -->
+          <h4>{{'rendimiento' | translate}}</h4>
+        </div>
+        <img *ngIf="report == 'en'" src="assets/images/icon_020.png" alt="" slot="end" class="avar_img cobra">
+      </ion-item>
+
+      <ion-item lines="none" class="ion-no-padding prest_pro" (click)="showLoanReport('loan')">
+        <img src="assets/images/icon_019.png" alt="" slot="start" class="avar_img">
+        <div>
+          <!-- <p>Nombre del reporte</p> Loan-->
+          <h4>{{'loans' | translate}}</h4>
+        </div>
+        <img *ngIf="report == 'loan'" src="assets/images/icon_020.png" alt="" slot="end" class="avar_img cobra">
+      </ion-item> 
+    </ion-list>
+  </div>
+</ion-content>

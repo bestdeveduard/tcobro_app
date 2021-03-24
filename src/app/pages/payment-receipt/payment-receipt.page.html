@@ -1,0 +1,195 @@
+<ion-header id="top_header">
+	<ion-toolbar>
+    <app-common-header></app-common-header>
+    
+    <div align="center" class="header_div">
+			<ion-item class="header_item" lines="none">
+				<img src="assets/images/icon_001.png" alt="" slot="start" (click)="gotoGeneralLoanview()">
+        <ion-label>Recibo de Pago</ion-label>
+				<ion-icon name="share-outline" slot="end" style="color: white;" (click)="share()"></ion-icon>
+				<ion-icon name="print-outline" slot="end" style="color: white;" (click)="printTransaction()"></ion-icon>
+			</ion-item>
+		</div>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content class="bg_color" fullscreen class="ion-padding">	
+	<div #pdfContainer [style.margin-top]="distributionData && (capital || interest || ajust || mora) ? '2%' : '0%'" style="padding-bottom: 7%;">
+
+		<div align="center" class="ion-padding-start ion-padding-end">
+			<h3>{{comService.currentUser.business_name}}</h3>
+			<h4>{{comService.currentUser.business_address}}</h4>
+		</div>
+
+		<div class="ion-padding">
+			<ion-row>				
+				<ion-col size="12" class="ion-align-item-center ion-align-self-center">
+					<h4>{{customer?.first_name}} {{customer?.last_name}}</h4>
+					<h5 *ngIf="customer == ''">{{'not_found' | translate}}</h5>
+				</ion-col>
+				<ion-col size="12" class="ion-align-item-center ion-align-self-center">
+					<p>ID: {{transactions?.loan_id}}</p>
+				</ion-col>
+			</ion-row>
+			
+			<ion-row>
+				<ion-col size="7" class="ion-align-item-center ion-align-self-center">
+					<h3 style="font-size: 20px;">{{'payment' | translate}}&nbsp;<span *ngIf="is_copy">({{'copy' | translate}})</span></h3>
+				</ion-col>
+				<ion-col size="5" class="ion-align-item-center ion-align-self-center">
+					<h3 style="font-size: 20px;">{{transactions?.credit | currency}}</h3>
+				</ion-col>
+			</ion-row>
+			
+			<ion-row>
+				<ion-col size="7" class="ion-align-item-center ion-align-self-center">
+					<p>{{'new_balance' | translate}}:</p>
+				</ion-col>
+				<ion-col size="5" class="ion-align-item-center ion-align-self-center">
+					<h5>{{receiptInfo?.balance | currency}}</h5>
+				</ion-col>
+			</ion-row>
+			<ion-row>
+				<ion-col size="7" class="ion-align-item-center ion-align-self-center">
+					<p>{{'balance_in_arrears' | translate}}:</p>
+				</ion-col>
+				<ion-col size="5" class="ion-align-item-center ion-align-self-center">
+					<h5>{{receiptInfo?.late_fee_balance | currency}}</h5>
+				</ion-col>
+      </ion-row>
+      
+      <ion-row>
+				<ion-col size="7" class="ion-align-item-center ion-align-self-center">
+					<p>{{'cuotas_pagadas' | translate}}:</p>
+				</ion-col>
+				<ion-col size="5" class="ion-align-item-center ion-align-self-center">
+					<h5>{{receiptInfo?.paid_count}} {{'of' | translate}} {{receiptInfo?.total_count}}</h5>
+				</ion-col>
+      </ion-row>
+      <ion-row>
+				<ion-col size="7" class="ion-align-item-center ion-align-self-center">
+					<p>{{'cuotas_pagadas_hoy' | translate}}:</p>
+				</ion-col>
+				<ion-col size="5" class="ion-align-item-center ion-align-self-center">
+					<h5>{{receiptInfo?.paid_count}}</h5>
+				</ion-col>
+			</ion-row>
+			
+			<div class="ion-padding-start ion-padding-end distrib"
+				*ngIf="distributionData && (capital || interest || ajust || mora)">
+				<ion-row *ngIf="capital" style="border-top: 1px solid #cecdcd;">
+					<ion-col size="6" class="ion-align-item-center ion-align-self-center ion-text-center">
+						<p>{{'capital' | translate}}</p>
+					</ion-col>
+					<ion-col size="6" class="ion-align-item-center ion-align-self-center ion-text-center">
+						<h5>{{distributionData?.principal | currency}}</h5>
+					</ion-col>
+				</ion-row>
+				<ion-row *ngIf="interest">
+					<ion-col size="6" class="ion-align-item-center ion-align-self-center ion-text-center">
+						<p>{{'interest' | translate}}</p>
+					</ion-col>
+					<ion-col size="6" class="ion-align-item-center ion-align-self-center ion-text-center">
+						<h5>{{distributionData?.interest | currency}}</h5>
+					</ion-col>
+				</ion-row>
+				<ion-row *ngIf="ajust">
+					<ion-col size="6" class="ion-align-item-center ion-align-self-center ion-text-center">
+						<p>{{'adjust' | translate}}</p>
+					</ion-col>
+					<ion-col size="6" class="ion-align-item-center ion-align-self-center ion-text-center">
+						<h5>{{distributionData?.fees | currency}}</h5>
+					</ion-col>
+				</ion-row>
+				<ion-row *ngIf="mora">
+					<ion-col size="6" class="ion-align-item-center ion-align-self-center ion-text-center">
+						<p>{{'more' | translate}}</p>
+					</ion-col>
+					<ion-col size="6" class="ion-align-item-center ion-align-self-center ion-text-center">
+						<h5>{{distributionData?.penalty | currency}}</h5>
+					</ion-col>
+				</ion-row>
+			</div>
+			
+			<!-- <ion-row>
+				<ion-col size="7" class="ion-align-item-center ion-align-self-center">
+					<p>{{'due_days' | translate}}:</p>
+				</ion-col>
+				<ion-col size="5" class="ion-align-item-center ion-align-self-center">
+					<h5>{{receiptPaymentData?.due_days}} days</h5>
+				</ion-col>
+			</ion-row>
+			<hr> -->
+			<!-- <ion-row>
+				<ion-col size="7" class="ion-align-item-center ion-align-self-center">
+					<p>{{'unpaid_payment' | translate}}:</p>
+				</ion-col>
+				<ion-col size="5" class="ion-align-item-center ion-align-self-center">
+					<h5>{{receiptPaymentData?.unpaid_count}} {{'of' | translate}} {{receiptPaymentData?.total_count}}</h5>
+				</ion-col>
+			</ion-row> -->
+			<!-- <ion-row>
+				<ion-col size="7" class="ion-align-item-center ion-align-self-center">
+					<p>{{'paid_payment' | translate}}:</p>
+				</ion-col>
+				<ion-col size="5" class="ion-align-item-center ion-align-self-center">
+					<h5>{{receiptPaymentData?.paid_count}} {{'of' | translate}} {{receiptPaymentData?.total_count}}</h5>
+				</ion-col>
+			</ion-row> -->
+			<!-- <ion-row>
+				<ion-col size="7" class="ion-align-item-center ion-align-self-center">
+					<p>{{'disbursement_date' | translate}}:</p>
+				</ion-col>
+				<ion-col size="5" class="ion-align-item-center ion-align-self-center">
+					<h5>{{receiptPaymentData?.disbursement_date}}</h5>
+				</ion-col>
+			</ion-row> -->
+			<!-- <ion-row>
+				<ion-col size="7" class="ion-align-item-center ion-align-self-center">
+					<p>{{'paid_count' | translate}}:</p>
+				</ion-col>
+				<ion-col size="5" class="ion-align-item-center ion-align-self-center">
+					<h5>{{receiptPaymentData?.paid_count}}</h5>
+				</ion-col>
+			</ion-row>			 -->
+    </div>
+
+		<!-- <br *ngIf="!distributionData"> -->
+
+		<div align="center" class="ion-padding">
+			<p>{{'receipt_comment' | translate}}
+			</p>
+			
+			<h5 style="margin-top: 8px;">{{c_date}}</h5>
+
+			<!-- <h4 style="margin-top: 12px;">{{'keep_receipt' | translate}}</h4>
+			<h5>{{'receipt_of_payment' | translate}} #CD321649846541312546</h5> -->
+		</div>		
+	</div>	
+</ion-content>
+
+<ion-footer id="bottom_footer">
+	<ion-tab-bar slot="bottom">
+		<ion-row>
+      <ion-col size="3" class="ion-align-self-center ion-align-item-center ion-text-center">
+        <ion-img [src]="home_img" (click)="goPage('tabs/home')"></ion-img>
+        <ion-label>{{'home' | translate}}</ion-label>
+      </ion-col>
+
+      <ion-col size="3" class="ion-align-self-center ion-align-item-center ion-text-center">
+        <ion-img [src]="route_img" (click)="goPage('tabs/route-view')"></ion-img>
+        <ion-label>{{'route' | translate}}</ion-label>
+      </ion-col>
+
+      <ion-col size="3" class="ion-align-self-center ion-align-item-center ion-text-center">
+        <ion-img [src]="client_img" (click)="goPage('tabs/customer-report')"></ion-img>
+        <ion-label>{{'clients' | translate}}</ion-label>
+      </ion-col>
+
+      <ion-col size="3" class="ion-align-self-center ion-align-item-center ion-text-center">
+				<ion-img [src]="menu_img" (click)="goPage('tabs/menu-view')"></ion-img>
+				<ion-label>{{'menu' | translate}}</ion-label>
+      </ion-col>
+    </ion-row>
+	</ion-tab-bar>
+</ion-footer>

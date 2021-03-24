@@ -1,0 +1,120 @@
+<ion-header>
+  <ion-toolbar>
+    <app-common-header></app-common-header>
+
+    <div class="header_div">
+      <ion-item class="header_item" lines="none">
+        <img src="assets/images/icon_037.png" alt="" slot="start" (click)="openWhatsapp()">
+        <div style="width: 100%;">
+          <ion-label>{{comService.route_name}}</ion-label>
+        </div>
+        <ion-icon name="print-outline" slot="end" *ngIf="tabIndex == 1" style="color: white;" (click)="printTransaction()"></ion-icon>
+      </ion-item>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-header>
+  <ion-toolbar style="min-height: 30px !important;">
+    <div style="width: 100%;" class="custom_searchbar">
+      <ion-searchbar animated mode="md" placeholder="{{'search' | translate}}" (ionInput)="searchLoanData($event)"></ion-searchbar>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<super-tabs (tabChange)="onTabChange($event)">
+  <super-tabs-toolbar slot="top" scrollable>
+    <super-tab-button>
+      <ion-label>
+        {{'loans' | translate}}
+      </ion-label>
+    </super-tab-button>
+
+    <super-tab-button>
+      <ion-label>
+        {{'payment' | translate}}
+      </ion-label>
+    </super-tab-button>
+  </super-tabs-toolbar>
+
+  <super-tabs-container style="padding-top: 10px; padding-bottom: 0px;">
+    <super-tab>
+      <ion-content no-bounce has-bouncing="false" forceOverscroll="false" class="presta_div"
+        style="--padding-bottom: 30px;">
+
+        <!-- <div *ngIf="loansData.length == 0">
+          <div *ngFor="let demo of demos" class="ion-padding custom-skeleton">
+            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+            <ion-skeleton-text animated></ion-skeleton-text>
+            <ion-skeleton-text animated style="width: 88%"></ion-skeleton-text>
+            <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
+            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+          </div>
+        </div> -->
+
+        <ion-row *ngFor="let presta of loansData" class="route_div">
+          <ion-col size="6" class="ion-align-item-center ion-align-self-center" (click)="showLoanView(presta)">
+            <ion-item lines="none" class="ion-no-padding prest_pro">
+              <img src="assets/images/icon_007.png" alt="" slot="start" class="avar_img">
+              <div>
+                <h4 class="ion-no-margin">{{presta.borrower.first_name}} {{presta.borrower.last_name}}</h4>
+              </div>
+            </ion-item>
+          </ion-col>
+          <ion-col size="6" class="ion-align-item-center ion-align-self-center" (click)="showLoanView(presta)">
+            <div align="center" class="action_btn">
+              <h3 class="ion-no-margin">{{'share' | translate}} <span>{{ presta.total_pending_balance + presta.proxima_count | currency }}</span></h3>
+            </div>
+          </ion-col>
+
+          <ion-col size="6" class="ion-align-item-center ion-align-self-center" (click)="callPhone()">
+            <ion-item lines="none" class="ion-no-padding prest_pro">
+              <img src="assets/images/icon_008.png" alt="" slot="start" class="avar_img">
+              <p class="text_general ion-no-margin">{{presta.borrower.mobile}}</p>
+            </ion-item>
+          </ion-col>
+          <ion-col size="6" class="ion-align-item-center ion-align-self-center">
+            <div align="center" class="action_btn">
+              <ion-button class="altraso" *ngIf="presta.days_arrears > 0" (click)="showPaymentForm(presta)">{{'pay' | translate}}</ion-button>
+              <ion-button class="cobrar" *ngIf="presta.days_arrears == 0" (click)="showPaymentForm(presta)">{{'pay' | translate}}</ion-button>
+            </div>
+          </ion-col>
+
+          <ion-col size="12" class="ion-align-item-center ion-align-self-center" (click)="openMap(presta)">
+            <ion-item lines="none" class="ion-no-padding prest_pro">
+              <img src="assets/images/icon_009.png" alt="" slot="start" class="avar_img">
+              <p class="text_general ion-no-margin">{{presta.borrower.address}}</p>
+            </ion-item>            
+          </ion-col>
+        </ion-row>
+      </ion-content>
+
+      <ion-fab class="fab_btn">
+        <ion-fab-button color="primary" (click)="gotoLoanForm()">
+          <img src="assets/images/add.png" alt="">
+        </ion-fab-button>
+      </ion-fab>
+    </super-tab>
+
+    <super-tab>
+      <ion-content no-bounce has-bouncing="false" forceOverscroll="false" class="presta_div">
+        <ion-row *ngFor="let presta of transactions" (click)="showPaymentReceipt(presta)">
+          <ion-col size="8" class="ion-align-item-center ion-align-self-center">
+            <ion-item lines="none" class="ion-no-padding prest_pro">
+              <img src="assets/images/icon_007.png" alt="" slot="start" class="avar_img cobra">
+              <div>
+                <h4 class="ion-no-margin">{{presta.customer.first_name}} {{presta.customer.last_name}}</h4>
+                <h5 class="ion-no-margin">{{'reference' | translate}} {{presta.transaction.id}}</h5>
+              </div>
+            </ion-item>
+          </ion-col>
+          <ion-col size="4" class="ion-align-item-center ion-align-self-center">
+            <div align="center" class="action_btn">
+              <h3 class="ion-no-margin"><span style="color: var(--main_color_1);">{{presta.transaction.credit | currency}}</span></h3>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-content>
+    </super-tab>
+  </super-tabs-container>
+</super-tabs>

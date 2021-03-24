@@ -1,0 +1,166 @@
+<ion-header>
+  <ion-toolbar>
+    <app-common-header></app-common-header>
+
+    <div align="center" class="header_div">
+      <ion-item class="header_item" lines="none">
+        <img src="assets/images/icon_001.png" alt="" slot="start" (click)="gotoCustomerReport()">
+        <ion-label>{{customerData.first_name}} {{customerData.last_name}}</ion-label>
+        <!-- <img src="" alt="" slot="end"> -->
+        <ion-icon name="pencil" slot="end" style="border: none;" (click)="editCustomer()"></ion-icon>
+      </ion-item>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<super-tabs (tabChange)="onTabChange($event)">
+  <super-tabs-toolbar slot="top" scrollable>
+    <super-tab-button>
+      <ion-label>
+        {{'Personal' | translate}}
+      </ion-label>
+    </super-tab-button>
+
+    <super-tab-button>
+      <ion-label>
+        {{'loans' | translate}}
+      </ion-label>
+    </super-tab-button>
+  </super-tabs-toolbar>
+
+  <super-tabs-container style="padding-top: 10px; padding-bottom: 0px;">
+    <super-tab>
+      <ion-content no-bounce has-bouncing="false" forceOverscroll="false" class="presta_div" style="--padding-bottom: 40px;">
+        <ion-row class="persnal" *ngIf="customerData">
+          <ion-col size="12" class="ion-align-item-center ion-align-self-center" align="center">
+            <form>
+              <fieldset style="border: none;">
+                <span class="star-cb-group">
+                  <ion-icon name="star" class="gold"></ion-icon>
+                  <ion-icon name="star" class="gold"></ion-icon>
+                  <ion-icon name="star" class="gold"></ion-icon>
+                  <ion-icon name="star" class="gray"></ion-icon>
+                  <ion-icon name="star" class="gray"></ion-icon>
+                </span>
+              </fieldset>
+            </form>
+          </ion-col>
+          <ion-col size="6" class="ion-align-item-center ion-align-self-center">
+            <ion-item class="ion-no-padding" lines="none">
+              <img src="assets/images/icon_010.png" alt="" slot="start">
+              <div class="prest_pro">
+                <p class="ion-no-margin">{{'status' | translate}}</p>
+                <h4 class="ion-no-margin">Excelente</h4>
+              </div>
+            </ion-item>
+          </ion-col>
+          <ion-col size="6" class="ion-align-item-center ion-align-self-center">
+            <ion-item class="ion-no-padding" lines="none">
+              <img src="assets/images/icon_007.png" alt="" slot="start">
+              <div class="prest_pro">
+                <p class="ion-no-margin">{{'name' | translate}}</p>
+                <h4 class="ion-no-margin">{{customerData.first_name}} {{customerData.last_name}}</h4>
+              </div>
+            </ion-item>
+          </ion-col>
+          <ion-col size="12" class="ion-align-item-center ion-align-self-center">
+            <ion-item class="ion-no-padding" lines="none">
+              <img src="assets/images/icon_009.png" alt="" slot="start">
+              <div class="prest_pro" (click)="showMap()">
+                <p class="ion-no-margin">{{'direction' | translate}}</p>
+                <h4 class="ion-no-margin" *ngIf="customerData.direction">{{customerData.direction}}</h4>
+              </div>
+            </ion-item>
+          </ion-col>
+          <ion-col size="6" class="ion-align-item-center ion-align-self-center">
+            <ion-item class="ion-no-padding" lines="none">
+              <img src="assets/images/icon_008.png" alt="" slot="start">
+              <div class="prest_pro" (click)="callPhone(customerData.mobile)">
+                <p class="ion-no-margin">{{'mobile' | translate}}</p>
+                <h4 class="ion-no-margin">{{customerData.mobile}}</h4>
+              </div>
+            </ion-item>
+          </ion-col>
+          <ion-col size="6" class="ion-align-item-center ion-align-self-center">
+            <ion-item class="ion-no-padding" lines="none">
+              <img src="assets/images/icon_008.png" alt="" slot="start">
+              <div class="prest_pro" (click)="callPhone(customerData.phone_business)">
+                <p class="ion-no-margin">{{'other' | translate}}</p>
+                <h4 class="ion-no-margin">{{customerData.phone_business}}</h4>
+              </div>
+            </ion-item>
+          </ion-col>
+          <ion-col size="6" class="ion-align-item-center ion-align-self-center">
+            <ion-item class="ion-no-padding" lines="none">
+              <img src="assets/images/icon_011.png" alt="" slot="start">
+              <div class="prest_pro">
+                <p class="ion-no-margin">{{'occupation' | translate}}</p>
+                <h4 class="ion-no-margin">{{customerData.working_status | translate}}</h4>
+              </div>
+            </ion-item>
+          </ion-col>
+          <ion-col size="6" class="ion-align-item-center ion-align-self-center">
+            <ion-item class="ion-no-padding" lines="none">
+              <img src="assets/images/icon_012.png" alt="" slot="start">
+              <div class="prest_pro">
+                <p class="ion-no-margin">{{'company' | translate}}</p>
+                <h4 class="ion-no-margin">{{customerData.business_name}}</h4>
+              </div>
+            </ion-item>
+          </ion-col>
+          <ion-col size="6" class="ion-align-item-center ion-align-self-center">
+            <ion-item class="ion-no-padding" lines="none">
+              <img src="assets/images/icon_008.png" alt="" slot="start">
+              <div class="prest_pro" (click)="callPhone(customerData.company_phone)">
+                <p class="ion-no-margin">{{'telephone' | translate}}</p>
+                <h4 class="ion-no-margin">{{customerData.company_phone}}</h4>
+              </div>
+            </ion-item>
+          </ion-col>
+          <ion-col size="6" class="ion-align-item-center ion-align-self-center">
+            <ion-item class="ion-no-padding" lines="none">
+              <img src="assets/images/icon_007.png" alt="" slot="start">
+              <div class="prest_pro">
+                <p class="ion-no-margin">{{'referencia' | translate}}</p>
+                <h4 class="ion-no-margin">{{customerData.referencia_1}}</h4>
+              </div>
+            </ion-item>
+          </ion-col>
+        </ion-row>        
+      </ion-content>
+    </super-tab>
+
+    <super-tab>
+      <ion-content no-bounce has-bouncing="false" forceOverscroll="false" class="presta_div">
+        <ion-row *ngFor="let presta of loanHistory">
+          <ion-col size="6" class="ion-align-item-center ion-align-self-center" (click)="showGeneralLoan(presta)">
+            <ion-item lines="none" class="ion-no-padding prest_pro">
+              <div class="prest_pro">
+                <p class="ion-no-margin">{{'loan_number' | translate}}</p>
+                <h4 class="ion-no-margin" style="margin-bottom: 8px;">{{presta.loan_data.id}}</h4>
+                <p class="ion-no-margin">{{'balance' | translate}}</p>
+                <h4 class="ion-no-margin">{{presta.balance | currency}}</h4>
+              </div>
+            </ion-item>
+          </ion-col>
+          <ion-col size="6" class="ion-align-item-center ion-align-self-center">
+            <div align="center" class="action_btn">
+              <div class="prest_pro" style="margin-bottom: 8px;">
+                <p class="ion-no-margin">{{'fee_to_pay' | translate}}</p>
+                <h4 class="ion-no-margin">{{presta.total_pending_balance + (+presta.proxima_count) | currency}}</h4>
+              </div><!--presta.loan_data.amount_in_arrears-->
+              <ion-button class="altraso" *ngIf="presta.days_arrears > 0" (click)="showPaymentForm(presta)">{{'pay' | translate}}</ion-button>
+              <ion-button class="cobrar" *ngIf="presta.days_arrears == 0" (click)="showPaymentForm(presta)">{{'pay' | translate}}</ion-button>
+            </div>
+          </ion-col>
+        </ion-row>
+
+        <ion-fab class="fab_btn">
+          <ion-fab-button color="primary" (click)="createLoan()">
+            <img src="assets/images/add.png" alt="">
+          </ion-fab-button>
+        </ion-fab>
+      </ion-content>
+    </super-tab>
+  </super-tabs-container>
+</super-tabs>

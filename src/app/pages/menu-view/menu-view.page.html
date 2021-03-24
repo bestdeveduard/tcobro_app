@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar>
+    <app-common-header></app-common-header>
+
+    <div align="center" class="header_div">
+			<ion-item class="header_item" lines="none">
+				<img src="assets/images/icon_037.png" alt="" slot="start" (click)="openWhatsapp()">
+        <ion-label>{{'menu' | translate}}</ion-label>
+        <img src="" alt="" slot="end">
+			</ion-item>
+		</div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding-top ion-padding-bottom">
+  <div class="presta_div">
+    <ion-list>
+      <ion-item lines="none" class="ion-no-padding prest_pro" (click)="gotoPage('tabs/myprofile')">
+        <img src="assets/images/icon_007.png" alt="" slot="start" class="avar_img cobra">
+        <div>
+          <ion-label>{{'profile' | translate}}</ion-label>
+        </div>
+      </ion-item>
+
+      <ion-item lines="none" class="ion-no-padding prest_pro" *ngIf="comService.userRole == 'Administrador'" (click)="gotoPage('tabs/change-route')">
+        <img src="assets/images/icon_023.png" alt="" slot="start" class="avar_img cobra">
+        <div>          
+          <ion-label>{{'routes' | translate}}</ion-label>
+        </div>
+      </ion-item>
+
+      <ion-item lines="none" class="ion-no-padding prest_pro" (click)="gotoPage('tabs/calculator-form')">
+        <img src="assets/images/icon_030.png" alt="" slot="start" class="avar_img cobra">
+        <div>          
+          <ion-label>{{'calculator' | translate}}</ion-label>
+        </div>
+      </ion-item>
+
+      <ion-item lines="none" class="ion-no-padding prest_pro" (click)="gotoPage('tabs/list-report')">
+        <img src="assets/images/icon_019.png" alt="" slot="start" class="avar_img cobra">
+        <div>
+          <ion-label>{{'reports' | translate}}</ion-label>
+        </div>
+      </ion-item>
+
+      <ion-item lines="none" class="ion-no-padding prest_pro" (click)="gotoPage('tabs/change-lang')">
+        <img src="assets/images/icon_014.png" alt="" slot="start" class="avar_img cobra">
+        <div>
+          <ion-label>{{'languages' | translate}}</ion-label>
+        </div>
+      </ion-item>
+
+      <ion-item lines="none" class="ion-no-padding prest_pro" (click)="gotoPage('tabs/print-setting')">
+        <img src="assets/images/printer.png" alt="" slot="start" class="avar_img cobra">
+        <div>          
+          <ion-label>{{'printer' | translate}}</ion-label>
+        </div>
+      </ion-item>
+
+      <ion-item lines="none" class="ion-no-padding prest_pro" (click)="gotoPage('tabs/account')">
+        <img src="assets/images/icon_027.png" alt="" slot="start" class="avar_img cobra">
+        <div>          
+          <ion-label>{{'settings' | translate}}</ion-label>
+        </div>
+      </ion-item>
+
+      <ion-item lines="none" class="ion-no-padding prest_pro" (click)="logout()">
+        <img src="assets/images/icon_028.png" alt="" slot="start" class="avar_img cobra">
+        <div>
+          <ion-label>{{'close' | translate}}</ion-label>
+        </div>
+      </ion-item>      
+    </ion-list>
+  </div>  
+</ion-content>

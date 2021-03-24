@@ -1,0 +1,138 @@
+<ion-header>
+  <ion-toolbar>
+    <app-common-header></app-common-header>
+
+    <div align="center" class="header_div">
+      <ion-item class="header_item" lines="none">
+        <img src="assets/images/icon_001.png" alt="" slot="start" (click)="gotoRouteView()">
+        <ion-label>Nuevo Prestamo</ion-label>
+        <img src="" alt="" slot="end">
+      </ion-item>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="form" (ngSubmit)="submitForm()">
+    <div class="presta_div">
+      <ion-row>
+        <ion-col size="12">
+          <ion-item lines="none" class="ion-no-padding prest_pro" style="--min-height: 50px;">
+            <div>
+              <p class="client_label">{{'customer' | translate}}</p>
+              <div *ngIf="clients.length == 0" style="height: 28px;"></div>
+              <ng-select2 *ngIf="clients.length > 0" class="client_select" formControlName="borrower_id" [(ngModel)]="client_id" [data]="clients" [placeholder]="'Seleccione...'" [width]="'100%'" (valueChanged)="changeClient($event)">
+              </ng-select2>
+            </div>
+            <!-- <ion-select mode="ios" interface="alert" formControlName="borrower_id" placeholder="Seleccione" required>
+              <ion-select-option *ngFor="let borrow of clients" value="{{borrow.id}}">{{borrow.first_name}}
+                {{borrow.last_name}}</ion-select-option>
+            </ion-select> -->            
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="6">
+          <ion-item lines="none" class="ion-no-padding prest_pro">
+            <ion-label position="floating" class="ion-no-margin">{{'payment_method' | translate}}</ion-label>
+            <ion-select mode="ios" interface="alert" formControlName="repayment_cycle" placeholder="Seleccione"
+              required>
+              <ion-select-option value="daily">{{'daily' | translate}}</ion-select-option>
+              <ion-select-option value="weekly">{{'weekly' | translate}}</ion-select-option>
+              <ion-select-option value="monthly">{{'monthly' | translate}}</ion-select-option>
+              <ion-select-option value="bi_weekly">{{'biweekly' | translate}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+
+        <ion-col size="6">
+          <ion-item lines="none" class="ion-no-padding prest_pro">
+            <ion-label position="floating" class="ion-no-margin">{{'amount_of_payments' | translate}}</ion-label>
+            <ion-input type="tel" formControlName="loan_duration" placeholder="0"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="6">
+          <ion-item lines="none" class="ion-no-padding prest_pro">
+            <ion-label position="floating" class="ion-no-margin">{{'amount_to_lend' | translate}}</ion-label>
+            <ion-input type="tel" formControlName="principal" placeholder="{{'0' | currency}}"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="6">
+          <ion-item lines="none" class="ion-no-padding prest_pro">
+            <ion-label position="floating" class="ion-no-margin">{{'pay_day' | translate}} *</ion-label>
+            <ion-select mode="ios" formControlName="day_payment" interface="alert" placeholder="Seleccione" required>
+              <ion-select-option value="1">{{'monday' | translate}}</ion-select-option>
+              <ion-select-option value="2">{{'tuesday' | translate}}</ion-select-option>
+              <ion-select-option value="3">{{'wednesday' | translate}}</ion-select-option>
+              <ion-select-option value="4">{{'thursday' | translate}}</ion-select-option>
+              <ion-select-option value="5">{{'friday' | translate}}</ion-select-option>
+              <ion-select-option value="6">{{'saturday' | translate}}</ion-select-option>
+              <ion-select-option value="7">{{'sunday' | translate}}</ion-select-option>
+              <ion-select-option value="8">{{'biweekly' | translate}}</ion-select-option>
+              <ion-select-option value="9">{{'monthly' | translate}}</ion-select-option>
+              <ion-select-option value="10">{{'everyday' | translate}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="6">
+          <ion-item lines="none" class="ion-no-padding prest_pro">
+            <ion-label position="floating" class="ion-no-margin">{{'%_interes' | translate}}</ion-label>
+            <ion-input type="tel" formControlName="interest_rate" placeholder="0.00"></ion-input>
+          </ion-item>
+        </ion-col>
+
+        <ion-col size="6">
+          <ion-item lines="none" class="ion-no-padding prest_pro">
+            <ion-label position="floating" class="ion-no-margin">{{'amortization' | translate}}</ion-label>
+            <ion-select mode="ios" interface="alert" formControlName="interest_method" placeholder="Seleccione"
+              required>
+              <ion-select-option value="flat_rate">{{'fixed_interest' | translate}}</ion-select-option>
+              <ion-select-option value="declining_balance_equal_installments">Interes amortizable</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="6">
+          <ion-item lines="none" class="ion-no-padding prest_pro" (click)="selectDateFunc()">
+            <ion-label position="floating" class="ion-no-margin">{{'first_payment_date' | translate}}</ion-label>
+            <ion-input type="text" formControlName="first_payment_date" [(ngModel)]="release_date1"
+              placeholder="DD-MM-YYYY"></ion-input>
+          </ion-item>
+        </ion-col>
+
+        <ion-col size="6">
+          <ion-item lines="none" class="ion-no-padding prest_pro">
+            <ion-label position="floating" class="ion-no-margin">{{'activate_penalty' | translate}}</ion-label>
+            <ion-select mode="ios" formControlName="penalty_status" interface="alert" placeholder="Seleccione" required>
+              <ion-select-option value="1">{{'active' | translate}}</ion-select-option>
+              <ion-select-option value="0">{{'not' | translate}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="display: none;">
+        <ion-col size="12">
+          <ion-item lines="none" class="ion-no-padding prest_pro">
+            <ion-label>{{file_name}}</ion-label>
+            <input type="file" formControlName="files" class="doc_file" name="files[]" #filedoc (change)="getFiles($event)"
+              accept="image/*; doc/*"><!--  multiple="multiple" -->
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </div>
+    <br>
+    <div align="center">
+      <ion-button class="guardar" type="submit" [disabled]="!form.valid || comService.networkStatus == 'off'">{{'save' | translate}}</ion-button>
+    </div>
+  </form>
+</ion-content>

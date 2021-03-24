@@ -1,0 +1,25 @@
+ion-title {
+  padding-right: 0 !important;
+  color: black;
+}
+
+ion-textarea {
+  border: 1px solid gray;
+  border-radius: 7px;
+  height: 140px;
+  --padding-start: 10px;
+}
+
+ion-button {
+  height: 35px;
+  width: 100px;
+  margin: 0 10px;
+}
+
+.save_btn {
+  --background: #0a6fca;
+}
+
+.cancel_btn {
+  --background: red;
+}

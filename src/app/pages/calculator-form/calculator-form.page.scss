@@ -1,0 +1,75 @@
+h3 {
+	font-size: 38px;
+	color: var(--main_color_2);
+	margin-bottom: 1px;
+	font-weight: bold;
+}
+
+small {
+	font-size: 17px;
+	color: var(--main_color_9);
+}
+
+.presta_div {
+  padding: 7px;
+  
+  ion-item {
+    padding: 5px 0px 5px 10px;
+    background: white;
+    box-shadow: 0 5px 5px -4px rgba(0, 0, 0, 0.5);
+    margin: 1px 1px 5px 1px;
+    border-radius: 8px;
+
+    ion-label {
+      width: 100%;
+    }
+  }
+
+  ion-col {
+    padding: 0 2px;
+  }
+}
+
+.prest_pro {
+  --background: transparent;
+  --min-height: 45px;
+
+  div {
+    width: 100%;
+  }  
+
+  ion-label {
+    font-size: 15px;
+    color: var(--main_color_2);
+    font-weight: bold;   
+  }
+
+  ion-input {
+    --padding-top: 5px;
+    width: 100%;
+    font-size: 14px;
+  }
+
+  ion-select {
+    --padding-top: 5px;
+    width: 100%;
+    font-size: 14px;
+  }
+}
+
+.item-has-focus {
+  box-shadow: 0 5px 5px -4px rgb(7 157 202 / 81%) !important;
+}
+
+ion-button {
+  height: 35px;
+  --padding-start: 20px;
+  --padding-end: 20px;
+  font-size: 15px;
+  --border-radius: 7px;
+  width: 45%;
+}
+
+.cobrar {
+  --background: var(--main_color_7);
+}

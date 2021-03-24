@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <app-common-header></app-common-header>
+
+    <div align="center" class="header_div">
+			<ion-item class="header_item" lines="none">
+				<img src="assets/images/icon_001.png" alt="" slot="start" (click)="navCtrl.back()">
+        <ion-label>{{'routes' | translate}}</ion-label>
+        <img src="" alt="" slot="end">
+			</ion-item>
+		</div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding-top ion-padding-bottom">
+  <div class="presta_div">
+    <ion-list>
+      <ion-item lines="none" class="ion-no-padding prest_pro" *ngFor="let route of routes" (click)="selectRoute(route)">
+        <img src="assets/images/icon_023.png" alt="" slot="start" class="avar_img cobra">
+        <div>
+          <!-- <p>Nombre de la ruta</p> -->
+          <h4>{{route.name}}</h4>
+        </div>
+        <img *ngIf="route.id == selected_route" src="assets/images/icon_020.png" alt="" slot="end" class="avar_img cobra">
+      </ion-item>      
+    </ion-list>
+  </div>
+</ion-content>

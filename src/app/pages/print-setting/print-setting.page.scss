@@ -1,0 +1,19 @@
+ion-title {
+  padding-right: 0px !important;
+}
+
+.custom_div {
+  border-bottom: 1px solid #bbb7b7;
+
+  p {
+    margin-bottom: 0;
+  }
+
+  ion-input {
+    color: gray;
+  }
+}
+
+.btn {  
+  --background: var(--main_color_4);
+}

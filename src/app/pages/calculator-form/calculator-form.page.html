@@ -1,0 +1,75 @@
+<ion-header>
+  <ion-toolbar>
+    <app-common-header></app-common-header>
+
+    <div align="center" class="header_div">
+			<ion-item class="header_item" lines="none">
+				<img src="assets/images/icon_001.png" alt="" slot="start" (click)="navCtrl.back()">
+        <ion-label>{{'calculator' | translate}}</ion-label>
+        <img src="" alt="" slot="end">
+			</ion-item>
+		</div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div align="center">
+    <h3>{{calc_val | currency}}</h3>
+    <small>{{'fee_to_pay' | translate}}</small>
+  </div>
+
+  <br>
+
+  <div class="presta_div">
+    <ion-row>
+      <ion-col size="6">
+        <ion-item lines="none" class="ion-no-padding prest_pro">
+          <ion-label position="floating">{{'amount' | translate}} *</ion-label>
+          <ion-input type="tel" [(ngModel)]="capital" placeholder="{{'0' | currency}}" value=""></ion-input>
+        </ion-item>
+      </ion-col>
+      <ion-col size="6">
+        <ion-item lines="none" class="ion-no-padding prest_pro">
+          <ion-label position="floating">{{'interest' | translate}} *</ion-label>
+          <ion-input type="tel" [(ngModel)]="interes" placeholder="10.00%" value=""></ion-input>
+        </ion-item>
+      </ion-col>      
+    </ion-row>
+    
+    <ion-row>
+      <ion-col size="6">
+        <ion-item lines="none" class="ion-no-padding prest_pro" style="display: none;">
+          <ion-label position="floating">Amortizacion</ion-label>
+          <ion-select mode="ios" interface="alert" placeholder="Seleccione" required>
+            <ion-select-option value="1">Demo First</ion-select-option>
+            <ion-select-option value="2">Demo Second</ion-select-option>
+            <ion-select-option value="3">Demo Third</ion-select-option>
+            <ion-select-option value="4">Demo Forth</ion-select-option>
+            <ion-select-option value="5">Demo 5th</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <ion-item lines="none" class="ion-no-padding prest_pro">
+          <ion-label position="floating">{{'dues' | translate}} *</ion-label>
+          <ion-input type="number" [(ngModel)]="cuotas" placeholder="0" value=""></ion-input>
+        </ion-item>
+      </ion-col>
+      
+      <ion-col size="6">
+        <ion-item lines="none" class="ion-no-padding prest_pro">
+          <ion-label position="floating" style="overflow: visible;">{{'payment_method' | translate}} *</ion-label>
+          <ion-select mode="ios" [(ngModel)]="modalidad" interface="alert" placeholder="Seleccione" required>
+            <ion-select-option value="30">{{'daily' | translate}}</ion-select-option>
+            <ion-select-option value="4">{{'weekly' | translate}}</ion-select-option>
+            <ion-select-option value="2">{{'biweekly' | translate}}</ion-select-option>
+            <ion-select-option value="1">{{'monthly' | translate}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </div>
+  <br>
+  <div align="center">
+    <ion-button class="cobrar" (click)="calculate()">{{'calculate' | translate}}</ion-button>
+  </div>
+</ion-content>

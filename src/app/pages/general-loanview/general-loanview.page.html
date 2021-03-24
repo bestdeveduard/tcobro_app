@@ -1,0 +1,220 @@
+<ion-header>
+	<ion-toolbar>
+    <app-common-header></app-common-header>
+    
+    <div align="center" class="header_div">
+			<ion-item class="header_item" lines="none">
+				<img src="assets/images/icon_001.png" alt="" slot="start" (click)="gotBack()">
+        <ion-label>{{loanData?.borrower?.first_name}} {{loanData?.borrower?.last_name}}</ion-label>
+        <img src="" alt="" slot="end">
+			</ion-item>
+		</div>
+	</ion-toolbar>
+</ion-header>
+
+<super-tabs (tabChange)="onTabChange($event)">
+  <super-tabs-toolbar slot="top" scrollable>
+    <super-tab-button>
+      <ion-label>
+        {{'general' | translate}}
+      </ion-label>
+    </super-tab-button>
+
+    <super-tab-button>
+      <ion-label>
+        {{'payment' | translate}}
+      </ion-label>
+    </super-tab-button>
+
+    <super-tab-button>
+      <ion-label>
+        {{'notes' | translate}}
+      </ion-label>
+    </super-tab-button>
+  </super-tabs-toolbar>
+
+  <super-tabs-container style="padding-top: 3px; padding-bottom: 0px;">
+    <super-tab>
+      <ion-content no-bounce has-bouncing="false" forceOverscroll="false" class="ion-padding-top ion-padding-bottom presta_div general_sec">
+        <ion-row>
+          <ion-col size="4" class="ion-align-item-center ion-align-self-center" align="center">
+            <div class="prest_pro">
+              <p class="ion-no-margin">{{'balance' | translate}}</p>
+              <h4 class="ion-no-margin">{{moreInfo?.balance | currency}}</h4>
+            </div>
+          </ion-col>
+          <ion-col size="4" class="ion-align-item-center ion-align-self-center" align="center">
+            <div class="prest_pro">
+              <p class="ion-no-margin">{{'overdue_payments' | translate}}</p>
+              <h4 class="ion-no-margin">{{moreInfo?.total_pending_balance | currency}}</h4>
+            </div>
+          </ion-col>
+          <ion-col size="4" class="ion-align-item-center ion-align-self-center" align="center">
+            <div class="prest_pro">
+              <p class="ion-no-margin">{{'penalty' | translate}}</p>
+              <h4 class="ion-no-margin">{{moreInfo?.pending_penalty | currency}}</h4>
+            </div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="4" class="ion-align-item-center ion-align-self-center" align="center">
+            <div class="prest_pro">
+              <p class="ion-no-margin">{{'modality' | translate}}</p>
+              <h4 class="ion-no-margin" *ngIf="loanData?.repayment_cycle == 'daily'">Diario</h4>
+              <h4 class="ion-no-margin" *ngIf="loanData?.repayment_cycle == 'weekly'">Semanal</h4>
+              <h4 class="ion-no-margin" *ngIf="loanData?.repayment_cycle == 'monthly'">Mensual</h4>
+              <h4 class="ion-no-margin" *ngIf="loanData?.repayment_cycle == 'bi_monthly'">Quincenal</h4>
+            </div>
+          </ion-col>
+          <ion-col size="4" class="ion-align-item-center ion-align-self-center" align="center">
+            <div class="prest_pro">
+              <p class="ion-no-margin">{{'paid_in_full' | translate}}</p>
+              <h4 class="ion-no-margin">{{moreInfo?.total_pagado | currency}}</h4>
+            </div>
+          </ion-col>
+          <ion-col size="4" class="ion-align-item-center ion-align-self-center" align="center">
+            <div class="prest_pro">
+              <p class="ion-no-margin">{{'fee_to_pay' | translate}}</p>
+              <h4 class="ion-no-margin">{{moreInfo?.paid_count}} {{'of' | translate}} {{moreInfo?.total_count}}</h4>
+            </div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="4" class="ion-align-item-center ion-align-self-center" align="center">
+            <div class="prest_pro">
+              <p class="ion-no-margin">{{'amount_approved' | translate}}</p>
+              <h4 class="ion-no-margin">{{loanData?.approved_amount | currency}}</h4>
+            </div>
+          </ion-col>
+          <ion-col size="4" class="ion-align-item-center ion-align-self-center" align="center">
+            <div class="prest_pro">
+              <p class="ion-no-margin">{{'disbursed_date' | translate}}</p>
+              <h4 class="ion-no-margin">{{loanData?.disbursed_date}}</h4>
+            </div>
+          </ion-col>
+          <ion-col size="4" class="ion-align-item-center ion-align-self-center" align="center">
+            <div class="prest_pro">
+              <p class="ion-no-margin">{{'star' | translate}}</p>
+              <h4 class="ion-no-margin">{{loanData?.first_payment_date}}</h4>
+            </div>
+          </ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col size="4" class="ion-align-item-center ion-align-self-center" align="center">
+            <div class="prest_pro">
+              <p class="ion-no-margin">{{'status' | translate}}</p>
+              <h4 class="ion-no-margin">{{loanData?.status == 'disbursed' ? 'Activo' : 'Inactivo'}}</h4>
+            </div>
+          </ion-col>
+          <ion-col size="4" class="ion-align-item-center ion-align-self-center" align="center">
+            <div class="prest_pro">
+              <p class="ion-no-margin">{{'next_date' | translate}}</p>
+              <h4 class="ion-no-margin">{{moreInfo?.proxima_day}}</h4>
+            </div>
+          </ion-col>
+          <ion-col size="4" class="ion-align-item-center ion-align-self-center" align="center">
+            <div class="prest_pro">
+              <p class="ion-no-margin">{{'next_payment' | translate}}</p>
+              <h4 class="ion-no-margin">{{moreInfo?.proxima_count | currency}}</h4>
+            </div>
+          </ion-col>
+          <!---<ion-col size="12" class="ion-align-item-center ion-align-self-center">
+            <div align="center" class="action_btn">
+              <ion-button class="cobrar" (click)="showPaymentForm()">Agregar Notas</ion-button>
+            </div>
+          </ion-col>--->
+        </ion-row>
+
+
+
+      </ion-content>
+    </super-tab>
+
+    <super-tab>
+      <ion-header>
+        <ion-toolbar style="min-height: 30px !important;">
+          <ion-row style="background: var(--bg-color); box-shadow: none;">
+            <ion-col size="4" class="ion-align-item-center ion-align-self-center" align="center">
+              <div class="prest_pro">
+                <p class="ion-no-margin">{{'date' | translate}}</p>              
+              </div>
+            </ion-col>
+            <ion-col size="4" class="ion-align-item-center ion-align-self-center" align="center">
+              <div class="prest_pro">
+                <p class="ion-no-margin">{{'amount' | translate}}</p>              
+              </div>
+            </ion-col>
+            <ion-col size="4" class="ion-align-item-center ion-align-self-center" align="center">
+              <div class="prest_pro">
+                <p class="ion-no-margin">{{'balance' | translate}}</p>              
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-content forceOverscroll="false" class="ion-padding-bottom presta_div" style="--padding-bottom: 55px !important;">
+        <ion-row *ngFor="let presta of pagos" (click)="showPaymentReceipt(presta)">
+          <ion-col size="4" class="ion-align-item-center ion-align-self-center" align="center">
+            <div class="prest_pro">              
+              <h4 class="ion-no-margin">{{presta.date}}</h4>
+            </div>
+          </ion-col>
+          <ion-col size="4" class="ion-align-item-center ion-align-self-center" align="center">
+            <div class="prest_pro">              
+              <h4 class="ion-no-margin">{{presta.monto | currency}}</h4>
+            </div>
+          </ion-col>
+          <ion-col size="4" class="ion-align-item-center ion-align-self-center" align="center">
+            <div class="prest_pro">              
+              <h4 class="ion-no-margin">{{presta.balance | currency}}</h4>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-content>
+    </super-tab>
+
+    <super-tab>
+      <ion-header>
+        <ion-toolbar style="min-height: 30px !important;">
+          <ion-row style="background: var(--bg-color); box-shadow: none;">
+            <ion-col size="4" class="ion-align-item-center ion-align-self-center" align="center">
+              <div class="prest_pro">
+                <p class="ion-no-margin">{{'date' | translate}}</p>              
+              </div>
+            </ion-col>
+            <ion-col size="8" class="ion-align-item-center ion-align-self-center" align="center">
+              <div class="prest_pro">
+                <p class="ion-no-margin">{{'note' | translate}}</p>              
+              </div>
+            </ion-col>            
+          </ion-row>
+        </ion-toolbar>
+      </ion-header>
+
+      <ion-content forceOverscroll="false" class="ion-padding-bottom presta_div" style="--padding-bottom: 55px !important;">
+        <ion-row *ngFor="let presta of comments">
+          <ion-col size="4" class="ion-align-item-center ion-align-self-center" align="center">
+            <div class="prest_pro">              
+              <h4 class="ion-no-margin">{{presta.date}}</h4>
+            </div>
+          </ion-col>
+          <ion-col size="8" class="ion-align-item-center ion-align-self-center" align="center">
+            <div class="prest_pro">              
+              <h4 class="ion-no-margin">{{presta.comment}}</h4>
+            </div>
+          </ion-col>
+        </ion-row>
+      </ion-content>
+
+      <ion-fab class="fab_btn">
+        <ion-fab-button color="primary" (click)="addComment()">
+          <img src="assets/images/add.png" alt="">
+        </ion-fab-button>
+      </ion-fab>
+    </super-tab>
+  </super-tabs-container>
+</super-tabs>

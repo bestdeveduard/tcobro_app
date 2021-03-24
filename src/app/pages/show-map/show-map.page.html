@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <app-common-header></app-common-header>
+
+    <div align="center" class="header_div">
+      <ion-item class="header_item" lines="none">
+        <img src="assets/images/icon_001.png" alt="" slot="start" (click)="goBack()">
+        <ion-label>Mapa</ion-label>
+        <img src="" alt="" slot="end">
+      </ion-item>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>  
+
+  <!-- <ion-fab horizontal="end" vertical="bottom" slot="fixed">    
+    <ion-fab-button color="danger" edge="true" (click)="getDirection()">
+      <ion-icon name="pin"></ion-icon>
+    </ion-fab-button>
+  </ion-fab> -->
+
+  <div class="map-wrapper">
+    <div #map id="map"></div>
+  </div>
+
+</ion-content>

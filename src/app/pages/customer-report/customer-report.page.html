@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar>
+    <app-common-header></app-common-header>
+
+    <div class="header_div">
+      <ion-item class="header_item" lines="none">
+        <img src="assets/images/icon_037.png" alt="" slot="start" (click)="openWhatsapp('123465798')">
+        <div style="width: 100%;">
+          <ion-label>{{'clients' | translate}}</ion-label>
+          <!-- <ion-searchbar animated mode="md" placeholder="Search"></ion-searchbar> -->
+        </div>
+        <img src="" alt="" style="width: 28px;" slot="end">
+      </ion-item>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-header>
+  <ion-toolbar style="min-height: 30px !important;">
+    <div style="width: 100%;" class="custom_searchbar">
+      <ion-searchbar animated mode="md" placeholder="{{'search' | translate}}" (ionInput)="searchLoanData($event)"></ion-searchbar><!-- clearIcon="undefined"-->
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding-bottom">
+  <div class="presta_div">
+
+    <!-- <div *ngIf="customers.length == 0">
+      <div *ngFor="let demo of demos" class="ion-padding custom-skeleton">
+        <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        <ion-skeleton-text animated></ion-skeleton-text>
+        <ion-skeleton-text animated style="width: 88%"></ion-skeleton-text>
+        <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
+        <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+      </div>
+    </div> -->
+
+    <ion-row *ngFor="let presta of customers; let i = index;">
+      <ion-col size="12" class="ion-align-item-center ion-align-self-center">
+        <ion-item lines="none" class="ion-no-padding prest_pro">
+          <img src="assets/images/icon_007.png" alt="" slot="start" class="avar_img" (click)="showGeneralCustomer(presta)">
+          <div style="width: 100%;">
+            <h4 class="ion-no-margin" (click)="showGeneralCustomer(presta)">{{presta.first_name}} {{presta.last_name}}</h4>
+            <ion-label (click)="showGeneralCustomer(presta)">
+              <img src="assets/images/icon_010.png" alt="" slot="start" class="small_img">
+              <span>{{presta.estatus | translate}}</span>
+            </ion-label>
+            <ion-label>
+              <div class="prest_pro">
+                <img src="assets/images/icon_008.png" alt="" slot="start" class="small_img" (click)="callPhone(presta.mobile)">
+                <span (click)="callPhone(presta.mobile)">{{presta.mobile}}</span>
+              </div>
+            </ion-label>
+          </div>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <ion-fab class="fab_btn">
+    <ion-fab-button color="primary" (click)="gotoCustomerForm()">
+      <img src="assets/images/add.png" alt="">
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

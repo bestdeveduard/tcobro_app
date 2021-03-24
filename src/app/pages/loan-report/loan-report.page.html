@@ -1,0 +1,88 @@
+<ion-header>
+  <ion-toolbar>
+    <app-common-header></app-common-header>
+
+    <div align="center" class="header_div">
+      <ion-item class="header_item" lines="none">
+        <img src="assets/images/icon_001.png" alt="" slot="start" (click)="gotoRouteView()">
+        <ion-label>{{comService.route_name}}</ion-label>
+        <img src="" alt="" slot="end">
+      </ion-item>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-padding">
+    <div class="body_div">
+      <ion-row>
+        <ion-col size="6">
+          <ion-item lines="none" class="ion-no-padding start_date" (click)="selectDateFunc('start_date')">
+            <ion-icon name="calendar-outline" slot="start"></ion-icon>
+            <ion-text>{{start_date1}}</ion-text>
+          </ion-item>
+        </ion-col>
+        <ion-col size="6">
+          <ion-item lines="none" class="ion-no-padding end_date" (click)="selectDateFunc('end_date')">
+            <ion-icon name="calendar-outline" slot="start"></ion-icon>
+            <ion-text>{{end_date1}}</ion-text>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <div align="center">
+      <ion-button class="search_btn" (click)="getLoanReport()" [disabled]="start_date == 'Start Date' || end_date == 'End Date'">{{'search' | translate}}</ion-button>
+    </div>
+
+    <div *ngIf="searched">
+      <div *ngFor="let data of loanReportData" style="border-bottom: 1px solid #bdbaba;margin-top: 8px;">
+        <ion-row>
+          <ion-col size="6" class="ion-align-item-center ion-align-self-center">
+            <strong>{{data.month}}</strong>
+          </ion-col>
+          <ion-col size="6" class="ion-align-item-center ion-align-self-center" align="right"
+            (click)="selected_data != data.month ? selected_data = data.month : selected_data = ''" style="color: var(--main_color_2);">
+            <strong>{{data.value | currency}}</strong>
+            <ion-icon name="caret-down-outline" class="drop_icon"></ion-icon>
+          </ion-col>
+        </ion-row>
+        <div *ngIf="selected_data == data.month" class="sub_div">
+          <ion-row *ngFor="let borrower of data.borrowers">
+            <ion-col size="6" class="ion-align-item-center ion-align-self-center">
+              - {{borrower.borrower}}
+            </ion-col>
+            <ion-col size="6" class="ion-align-item-center ion-align-self-center" align="right"
+              style="color: var(--main_color_2);">
+              {{borrower.total | currency}}
+            </ion-col>
+          </ion-row>          
+        </div>
+      </div>
+    </div>    
+  </div>
+
+  <hr *ngIf="searched">
+
+  <div class="ion-padding" *ngIf="searched">
+    <ion-row>
+      <ion-col size="6" class="ion-align-item-center ion-align-self-center">
+        <strong>{{'total_borrowed' | translate}}</strong>
+      </ion-col>
+      <ion-col size="6" class="ion-align-item-center ion-align-self-center" align="right"
+        style="color: var(--main_color_2);">
+        <strong>{{total_val | currency}}</strong>        
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="6" class="ion-align-item-center ion-align-self-center">
+        <strong>{{'quantity' | translate}}</strong>
+      </ion-col>
+      <ion-col size="6" class="ion-align-item-center ion-align-self-center" align="right"
+        style="color: var(--main_color_2);">
+        <strong>{{total_count}}</strong>
+      </ion-col>
+    </ion-row>
+  </div>
+
+</ion-content>

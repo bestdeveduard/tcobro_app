@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <app-common-header></app-common-header>
+
+    <div align="center" class="header_div">
+			<ion-item class="header_item" lines="none">
+				<img src="assets/images/icon_001.png" alt="" slot="start" (click)="savePrinter()">
+        <ion-label>{{'print_setting' | translate}}</ion-label>        
+        <ion-icon name="save-outline" slot="end" style="color: white;" (click)="savePrinter()"></ion-icon>
+			</ion-item>
+		</div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="ion-padding">    
+    <br>
+    <ion-item lines="line" class="ion-no-padding" (click)="showDeviceList()" style="--background: transparent;">
+      <ion-label>{{'select_device' | translate}}</ion-label>
+      <p></p>
+    </ion-item>
+
+    <div class="custom_div">
+      <p>{{'device_name' | translate}}</p>
+      <ion-input placeholder="Bluetooth Printer" value="{{device_name}}" readonly></ion-input>
+    </div>
+
+    <div class="custom_div">
+      <p>{{'mac_address' | translate}}</p>
+      <ion-input placeholder="A0:23:B5:00:A" value="{{mac_address}}" readonly></ion-input>
+    </div>
+    <br>
+    <br>
+    <div align="center">
+      <ion-button class="btn" (click)="printTestData()">{{'test_print' | translate}}</ion-button>
+    </div>    
+  </div>
+</ion-content>

@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <app-common-header></app-common-header>
+
+    <div align="center" class="header_div">
+			<ion-item class="header_item" lines="none">
+				<img src="assets/images/icon_001.png" alt="" slot="start" (click)="navCtrl.back()">
+        <ion-label>{{'languages' | translate}}</ion-label>
+        <img src="" alt="" slot="end">
+			</ion-item>
+		</div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding-top ion-padding-bottom">
+  <div class="presta_div">
+    <ion-list>
+      <ion-item lines="none" class="ion-no-padding prest_pro" (click)="selectLang('en')">
+        <img src="assets/images/us.png" alt="" slot="start" class="avar_img">
+        <div>          
+          <h4>Ingles</h4>
+        </div>
+        <img *ngIf="lang == 'en'" src="assets/images/icon_020.png" alt="" slot="end" class="avar_img cobra">
+      </ion-item>
+
+      <ion-item lines="none" class="ion-no-padding prest_pro" (click)="selectLang('es')">
+        <img src="assets/images/sp.png" alt="" slot="start" class="avar_img">
+        <div>          
+          <h4>Espanol</h4>
+        </div>
+        <img *ngIf="lang == 'es'" src="assets/images/icon_020.png" alt="" slot="end" class="avar_img cobra">
+      </ion-item>
+
+      <ion-item lines="none" class="ion-no-padding prest_pro" (click)="selectLang('pt')">
+        <img src="assets/images/br.png" alt="" slot="start" class="avar_img">
+        <div>
+          <h4>Portugues</h4>
+        </div>
+        <img *ngIf="lang == 'pt'" src="assets/images/icon_020.png" alt="" slot="end" class="avar_img cobra">
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

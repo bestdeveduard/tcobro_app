@@ -1,0 +1,65 @@
+<!-- <ion-header class="bg-transparent">
+	<ion-toolbar>
+		<ion-title>
+			<div class="d-flex">
+				<span class="page_title">{{'sign_in' | translate}}</span>
+			</div>
+		</ion-title>
+	</ion-toolbar>
+</ion-header> -->
+
+<ion-content class="bg_color" fullscreen>
+
+	<app-common-header></app-common-header>
+
+	<div class="banner" style="display: none;">
+		<div align="center">
+			<h3 class="ion-no-margin">T-Cobro</h3>
+			<p class="ion-no-margin">Gestionamos tus prestamos</p>
+		</div>
+	</div>
+
+	<div align="center" style="margin-top: 10%; margin-bottom: 4%;">
+		<img src="assets/images/logo.png" alt="" style="width: 25%;">
+	</div>
+
+	<div class="ion-padding">
+		<form [formGroup]="signinForm">
+			<div class="form">
+				<ion-list lines="none">
+					<ion-item lines="none">
+						<div class="icon_box" slot="start">
+							<img src="assets/images/icon_011.png">
+						</div>
+						<ion-input type="email" placeholder="{{'email_address' | translate}}" formControlName="email"></ion-input>
+					</ion-item>
+	
+					<ion-item lines="none">
+						<div class="icon_box" slot="start">
+							<img src="assets/images/icon_021.png">
+						</div>
+						<ion-input type="password" placeholder="{{'password' | translate}}" formControlName="password"></ion-input>
+						<!-- <h3 slot="end" (click)="forgotpassword()">{{'forgot' | translate}}</h3> -->
+					</ion-item>
+				</ion-list>
+
+				<div align="center">
+					<ion-button shape="round" class="btn" [disabled]="!signinForm.valid" (click)="login(signinForm.value)">{{'sign_in' | translate}}</ion-button>
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<div class="ion-padding" style="margin-top: 10%;">
+		<p class="ion-text-center" no-margin>{{'not_registered_yet' | translate}}
+			<span (click)="register_now()"
+			 style="font-weight: bold;
+			text-decoration: underline;
+			color: #040494;">
+				{{'register_now' | translate}}
+			</span>
+		</p>
+		<!-- <ion-button size="large" fill="outline" shape="block" class="btn" (click)="register_now()">
+			<span class="text_gradient">{{'register_now' | translate}}</span></ion-button> -->
+	</div>
+</ion-content>

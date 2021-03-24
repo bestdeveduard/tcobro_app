@@ -1,0 +1,38 @@
+<ion-header>
+	<ion-toolbar>
+		<app-common-header></app-common-header>
+
+		<div align="center" class="header_div">
+			<ion-item class="header_item" lines="none">
+				<img src="assets/images/icon_037.png" alt="" slot="start" (click)="openWhatsapp()">
+				<ion-label>{{comService.route_name}}</ion-label>
+				<!-- <img src="assets/images/icon_006.png" alt="" slot="end" (click)="refresh()"> -->
+			</ion-item>
+		</div>
+
+		<!-- <img src="assets/images/icon_035.png" alt="" slot="start" class="support_btn" (click)="openWhatsapp()"> -->
+	</ion-toolbar>
+</ion-header>
+
+<ion-content no-bounce has-bouncing="false" forceOverscroll="false">	
+	<br>
+	<div align="center">
+		<h3>{{total | currency}}</h3>
+		<small>{{'balance_of_day' | translate}}</small>
+	</div>
+	<br>
+	<ion-refresher slot="fixed" #refreshLoan (ionRefresh)="doRefresh($event)">
+		<ion-refresher-content></ion-refresher-content>
+	</ion-refresher>
+
+	<ion-list lines="none">
+		<ion-item *ngFor="let route of routes">
+			<img src="assets/images/icon_004.png" alt="" slot="start" style="width: 45px;">
+			<div>
+				<h4 class="ion-no-margin">{{route.title | translate}}</h4>
+			</div>
+			<p class="ion-no-margin" slot="end">{{route.value | currency}}</p>
+		</ion-item>
+	</ion-list>
+
+</ion-content>

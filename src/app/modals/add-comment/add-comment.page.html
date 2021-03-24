@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{'add_comment' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-padding">
+		<form [formGroup]="form" (ngSubmit)="submitForm()">
+			<div class="form">
+				<ion-textarea type="text" placeholder="{{'enter_comment_here' | translate}}" formControlName="comment"></ion-textarea>
+        <br><br>
+				<div align="center">
+          <ion-button shape="round" type="submit" class="save_btn" [disabled]="!form.valid">{{'save' | translate}}</ion-button>
+          <ion-button shape="round" class="cancel_btn" (click)="cancel()">{{'cancel' | translate}}</ion-button>
+				</div>
+			</div>
+		</form>
+	</div>
+</ion-content>

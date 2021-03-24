@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-toolbar>
+		<app-common-header></app-common-header>
+		
+		<div align="center" class="header_div">
+			<ion-item class="header_item" lines="none">
+				<img src="assets/images/icon_001.png" alt="" slot="start" (click)="gotBack()">				
+        <ion-label>{{'profile' | translate}}</ion-label>
+        <img src="" alt="" slot="end">
+			</ion-item>
+		</div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding-top ion-padding-bottom">
+  <div class="presta_div">
+    <ion-list>
+      <ion-item lines="none" class="ion-no-padding prest_pro">
+        <img src="assets/images/icon_007.png" alt="" slot="start" class="avar_img cobra">
+        <div>
+          <ion-label position="floating">{{'name' | translate}}</ion-label>
+          <ion-input type="text" placeholder="{{'name' | translate}}" readonly value="{{userData?.first_name}} {{userData?.last_name}}"></ion-input>
+        </div>
+      </ion-item>
+
+      <ion-item lines="none" class="ion-no-padding prest_pro">
+        <img src="assets/images/icon_009.png" alt="" slot="start" class="avar_img cobra">
+        <div>
+					<ion-label position="floating">{{'direction' | translate}}</ion-label>
+          <ion-input type="text" placeholder="{{'direction' | translate}}" [(ngModel)]="userData.business_address"></ion-input>
+        </div>
+      </ion-item>
+
+      <ion-item lines="none" class="ion-no-padding prest_pro">
+        <img src="assets/images/icon_008.png" alt="" slot="start" class="avar_img cobra">
+        <div>
+					<ion-label position="floating">{{'mobile' | translate}}</ion-label>
+          <ion-input type="tel" placeholder="{{'mobile' | translate}}" [(ngModel)]="userData.phone"></ion-input>
+        </div>
+      </ion-item>
+
+      <ion-item lines="none" class="ion-no-padding prest_pro">
+        <img src="assets/images/icon_013.png" alt="" slot="start" class="avar_img cobra">
+        <div>
+					<ion-label position="floating">{{'email' | translate}}</ion-label>
+          <ion-input type="email" placeholder="{{'email' | translate}}" [(ngModel)]="userData.email"></ion-input>
+        </div>
+			</ion-item>
+			
+			<ion-item lines="none" class="ion-no-padding prest_pro">
+        <img src="assets/images/icon_021.png" alt="" slot="start" class="avar_img cobra">
+        <div>
+					<ion-label position="floating">{{'new_password' | translate}}</ion-label>
+          <ion-input type="password" placeholder="{{'new_password' | translate}}" [(ngModel)]="password"></ion-input>
+        </div>
+      </ion-item>
+
+      <ion-item lines="none" class="ion-no-padding prest_pro">
+        <img src="assets/images/icon_021.png" alt="" slot="start" class="avar_img cobra">
+        <div>
+					<ion-label position="floating">{{'confirm_password' | translate}}</ion-label>
+          <ion-input type="password" placeholder="{{'confirm_password' | translate}}" [(ngModel)]="repassword"></ion-input>
+        </div>
+      </ion-item>      
+    </ion-list>
+  </div>
+  <br>
+  <div align="center">
+    <ion-button class="guardar" (click)="update()">{{'update' | translate}}</ion-button>
+  </div>
+</ion-content>
